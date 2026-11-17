@@ -20,5 +20,3 @@ public class DemoController {
         return Objects.requireNonNull(service.execute(), "service.execute() returned null");
     }
 }
-
-
