@@ -1,0 +1,34 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'ru.sental.di'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    snakeyamlVersion = '2.2'
+    junitBomVersion = '6.0.0'
+    reflectionsVersion = '0.10.2'
+    slf4jVersion = '2.0.13'
+}
+
+dependencies {
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+
+    testImplementation platform("org.junit:junit-bom:${junitBomVersion}")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation "org.reflections:reflections:${reflectionsVersion}"
+    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+    api "org.reflections:reflections:${reflectionsVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}

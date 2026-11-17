@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'org.liquibase.gradle' version '2.2.0'
+    id 'application'
+}
+
+application {
+    mainClass = 'ru.sental.Main'
+}
+
+group = 'ru.sental.app'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitBomVersion = '6.0.0'
+    liquitbaseCoreVersion = '4.29.2'
+    postgreSqlVersion = '42.7.3'
+    picocliVersion = '4.7.5'
+}
+
+dependencies {
+    implementation project(':di')
+
+    liquibaseRuntime "org.liquibase:liquibase-core:${liquitbaseCoreVersion}"
+    liquibaseRuntime "org.postgresql:postgresql:${postgreSqlVersion}"
+    liquibaseRuntime "info.picocli:picocli:${picocliVersion}"
+
+    testImplementation platform("org.junit:junit-bom:${junitBomVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources', 'src/main/resources-liquibase']
+        }
+    }
+}
+
+liquibase {
+    activities {
+        updateDb {
+            changelogFile 'main-module/src/main/resources-liquibase/db.migration/changelog-master.xml'
+            url 'jdbc:postgresql://localhost:5432/senla_db'
+            username 'postgres'
+            password 'Caruman4747'
+        }
+    }
+    runList = 'updateDb'
+}
+
+tasks.named('build') {
+    dependsOn 'update'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs '-Dfile.encoding=UTF-8', '-Dstdout.encoding=UTF-8'
+}
