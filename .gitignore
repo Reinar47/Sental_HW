@@ -16,7 +16,7 @@ target/
 ### IntelliJ IDEA ###
 
 #### HW1 ####
-.idea
+/.idea/
 *.class
 *.iml
 ##### HW1 ####
@@ -35,3 +35,4 @@ build/
 
 ### VS Code ###
 .vscode/
+*.jar
