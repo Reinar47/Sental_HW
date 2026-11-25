@@ -6,7 +6,6 @@ import ru.sental.mainmodulespring.dto.request.CharacterRaceRequest;
 import ru.sental.mainmodulespring.dto.response.CharacterRaceResponse;
 import ru.sental.mainmodulespring.dto.response.lists.CharacterRaceResponseList;
 import ru.sental.mainmodulespring.entity.CharacterRace;
-import ru.sental.mainmodulespring.exception.ResourceNotFoundException;
 import ru.sental.mainmodulespring.mapper.CharacterRaceMapper;
 import ru.sental.mainmodulespring.repository.CharacterRaceRepository;
 import ru.sental.mainmodulespring.service.CharacterRaceService;
