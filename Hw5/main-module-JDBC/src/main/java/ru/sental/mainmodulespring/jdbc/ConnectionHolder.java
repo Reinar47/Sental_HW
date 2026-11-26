@@ -20,25 +20,6 @@ public class ConnectionHolder {
 
 
     /** Взять коннект для текущего потока */
-//     *
-//     * getConnection()
-//     * │
-//     * ├─ есть коннект для потока?
-//     * │   ├─ нет ──────────────────────────────────┐
-//     * │   └─ да                                     │
-//     * │       ├─ закрыт?                            │
-//     * │       │   ├─ да, и поток в транзакции ──► throw IllegalStateException
-//     * │       │   ├─ да, поток не в транзакции ──► удалить записи → создать новый
-//     * │       │   └─ нет ──► return existing
-//     * │                                             │
-//     * └─────────────────────────────────────────────┘
-//     *                                               │
-//     *               создать новый: dataSource.getConnection()
-//     *               setAutoCommit(true)
-//     *               threadConnections.put(thread, conn)
-//     *               transactionFlags.put(thread, false)
-//     *               return conn
-//     * */
     public Connection getConnection() throws SQLException {
         Thread current = Thread.currentThread();
         Connection existing = threadConnections.get(current);
