@@ -36,3 +36,7 @@ build/
 ### VS Code ###
 .vscode/
 *.jar
+/Hw5/.gradle/
+/Hw5/gradle/
+/Hw4/.gradle/
+/Hw4/gradle/
